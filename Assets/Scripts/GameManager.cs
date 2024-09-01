@@ -1,11 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+[Serializable]
+public class Zona
+{
+    public string ZonaID; 
+    public Camera camara; 
+}
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
+    [SerializeField] private List<Zona> _zonas;
     public enum StatesFoca
     {
         FueraDelMar,
@@ -16,6 +24,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float _timeForLevelUp;
     [SerializeField] private float _timeForChangeOfState;
     private StatesFoca _currentState;
+    private Camera _currentCamera;
 
     private void Awake()
     {
@@ -36,8 +45,30 @@ public class GameManager : MonoBehaviour
         _currentState = StatesFoca.FueraDelMar;
         StartCoroutine(LevelUpIncrement());
         StartCoroutine(RoutineOfFoca());
+
+        if(_zonas.Count > 0)
+        {
+            _currentCamera = _zonas[0].camara;
+            ActivarCamara(_currentCamera);
+        }
     }
-    
+    public void CambiarZona(string zonaId)
+    {
+        Zona nuevaZona = _zonas.Find(z=>z.ZonaID == zonaId);
+        if (nuevaZona != null && nuevaZona.camara != _currentCamera)
+        {
+            _currentCamera = nuevaZona.camara;
+            ActivarCamara(_currentCamera);
+        }
+    }
+    private void ActivarCamara(Camera camera)
+    {
+        foreach (var zona in _zonas)
+        {
+            zona.camara.gameObject.SetActive(zona.camara == camera);
+        }
+    }
+
     private IEnumerator LevelUpIncrement()
     {
         for (int i = 0; i < 3; i++)
