@@ -147,7 +147,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 14764946}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5959370898639299939, guid: f44a7e8550365b944b0c88e7ae68afa2, type: 2}
   m_audioClip: {fileID: 8300000, guid: 4b1fe79e670c5c54fa3f2c27e0987bd2, type: 3}
@@ -281,6 +281,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 636720472}
+  - {fileID: 475106200}
   m_Father: {fileID: 2047339667}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -336,6 +337,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &362789643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 362789644}
+  m_Layer: 0
+  m_Name: Teleport (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &362789644
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362789643}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -7.89, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 801059931}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &416944517
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,6 +401,37 @@ Transform:
   - {fileID: 1065240006}
   m_Father: {fileID: 0}
   m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &475106199
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 475106200}
+  m_Layer: 0
+  m_Name: Teleport
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &475106200
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475106199}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.74, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 200566000}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &484332353
 GameObject:
@@ -515,7 +578,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _destinoZonaId: Aleta
-  _triggerOpuesto: {fileID: 636720473}
+  _triggerOpuesto: {fileID: 0}
+  _teleport: {fileID: 475106200}
+  _piojoTransform: {fileID: 1746822363}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -731,7 +796,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _destinoZonaId: Lomo
-  _triggerOpuesto: {fileID: 511502954}
+  _triggerOpuesto: {fileID: 0}
+  _teleport: {fileID: 362789644}
+  _piojoTransform: {fileID: 1746822363}
 --- !u!61 &636720474
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -957,6 +1024,7 @@ Transform:
   m_Children:
   - {fileID: 511502952}
   - {fileID: 1389337803}
+  - {fileID: 362789644}
   m_Father: {fileID: 2047339667}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1113,7 +1181,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1065240006
 Transform:
   m_ObjectHideFlags: 0
@@ -1409,6 +1477,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _destinoZonaId: Cabeza
   _triggerOpuesto: {fileID: 0}
+  _teleport: {fileID: 0}
+  _piojoTransform: {fileID: 0}
 --- !u!1 &1462649189
 GameObject:
   m_ObjectHideFlags: 0
@@ -1439,11 +1509,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _zonas:
-  - ZonaID: 
+  - ZonaID: Aleta
     camara: {fileID: 519420031}
-  - ZonaID: 
+  - ZonaID: Lomo
     camara: {fileID: 1831091066}
-  - ZonaID: 
+  - ZonaID: Cabeza
     camara: {fileID: 1065240008}
   _piojo: {fileID: 1746822362}
   _timeForLevelUp: 3
@@ -1536,6 +1606,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _destinoZonaId: Lomo
   _triggerOpuesto: {fileID: 0}
+  _teleport: {fileID: 0}
+  _piojoTransform: {fileID: 0}
 --- !u!1 &1746822361
 GameObject:
   m_ObjectHideFlags: 0
