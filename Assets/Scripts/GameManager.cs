@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
     [SerializeField] private List<Zona> _zonas;
+    [SerializeField] private AudioSource _audioSource;
     public enum StatesFoca
     {
         FueraDelMar,
@@ -60,6 +61,7 @@ public class GameManager : MonoBehaviour
             _currentCamera = nuevaZona.camara;
             ActivarCamara(_currentCamera);
         }
+        _piojo.ActualizarRestriccionesCamara(GetCurrentCameraRestrictions());
     }
     private void ActivarCamara(Camera camera)
     {
@@ -67,6 +69,7 @@ public class GameManager : MonoBehaviour
         {
             zona.camara.gameObject.SetActive(zona.camara == camera);
         }
+
     }
 
     private IEnumerator LevelUpIncrement()
@@ -84,30 +87,46 @@ public class GameManager : MonoBehaviour
             switch (_currentState)
             {
                 case StatesFoca.FueraDelMar:
-                    Debug.Log("La foca esta fuera del mar");
-                    yield return new WaitForSeconds(_timeForChangeOfState);
+                    Debug.Log("La foca está fuera del mar.");
+                    // Espera 15 segundos antes de la advertencia
+                    yield return new WaitForSeconds(_timeForChangeOfState - 15f);
+                    AdvertirCambioDeEstado(StatesFoca.MarNoProfundo);
+                    // Esperar los últimos 15 segundos
+                    yield return new WaitForSeconds(15f);
                     _currentState = StatesFoca.MarNoProfundo;
                     break;
-                //Haz algo
+
                 case StatesFoca.MarNoProfundo:
-                    Debug.Log("La foca esta en el mar no profundo");
-                    yield return new WaitForSeconds(_timeForChangeOfState);
+                    Debug.Log("La foca está en el mar no profundo.");
+                    yield return new WaitForSeconds(_timeForChangeOfState - 15f);
+                    AdvertirCambioDeEstado(StatesFoca.MarProfundo);
+                    yield return new WaitForSeconds(15f);
                     _currentState = StatesFoca.MarProfundo;
                     break;
-                //Haz algo
+
                 case StatesFoca.MarProfundo:
-                    Debug.Log("La foca esta en el mar profundo");
-                    yield return new WaitForSeconds(_timeForChangeOfState);
+                    Debug.Log("La foca está en el mar profundo.");
+                    yield return new WaitForSeconds(_timeForChangeOfState - 15f);
+                    AdvertirCambioDeEstado(StatesFoca.FueraDelMar);
+                    yield return new WaitForSeconds(15f);
                     _currentState = StatesFoca.FueraDelMar;
                     break;
-                //Haz algo
+
                 default:
                     Debug.LogError("Estado desconocido");
                     break;
-
             }
         }
     }
+    public RestriccionesCamara GetCurrentCameraRestrictions()
+    {
+        return _currentCamera.GetComponent<RestriccionesCamara>();
+    }
+    private void AdvertirCambioDeEstado(StatesFoca nuevoEstado)
+    {
+        Debug.Log($"Advertencia: La foca cambiará a {nuevoEstado} en 15 segundos.");
+    }
+
     public bool EsEsteState(StatesFoca statesFoca)
     {
         return _currentState == statesFoca;

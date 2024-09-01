@@ -8,6 +8,7 @@ public class Piojo : MonoBehaviour
     [Header("Movimiento")]
     [SerializeField] private float _speed;
     private Rigidbody2D _rb;
+    private bool _estaCaminando;
     private Vector2 _direction;
     [Header("Salud")] //O Hambre
     [SerializeField] private float _currentHealth;
@@ -25,32 +26,54 @@ public class Piojo : MonoBehaviour
     [SerializeField]private bool _estaAgarrado;
     [Header("Etapa de Ninfa")]
     [SerializeField] private int _ninfaLevel;
+    [Header("Audios")]
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _caminarClip;
+    private RestriccionesCamara _restriccionesCamara;
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _restriccionesCamara = GameManager.Instance().GetCurrentCameraRestrictions();
     }
+
+   
+
     private void Update()
     {
-        //if(!_estaAgarrado && (GameManager.Instance().EsEsteState(GameManager.StatesFoca.MarNoProfundo) Descomentar
-        //    || GameManager.Instance().EsEsteState(GameManager.StatesFoca.MarProfundo)))
-        //{
-        //        Die();
-        //}
+        if (!_estaAgarrado && (GameManager.Instance().EsEsteState(GameManager.StatesFoca.MarNoProfundo)
+            || GameManager.Instance().EsEsteState(GameManager.StatesFoca.MarProfundo)))
+        {
+            Die();
+        }
         if (!_estaEnZonaCaliente)
         {
             QuitarTemperatura(_decreaseTemperaturaPorSegundo * Time.deltaTime);
         }
-            QuitarSalud(_decreaseHealthPorSegundo * Time.deltaTime);
-
+        QuitarSalud(_decreaseHealthPorSegundo * Time.deltaTime);
 
         var horizontal = Input.GetAxisRaw("Horizontal");
         var vertical = Input.GetAxisRaw("Vertical");
         _direction = new Vector2(horizontal, vertical);
+
+        bool wasWalking = _estaCaminando;
+        _estaCaminando = _direction.magnitude > 0.1f;
+        GenerarSonidoDeCaminar(wasWalking);
     }
+    public void ActualizarRestriccionesCamara(RestriccionesCamara restricciones)
+    {
+        _restriccionesCamara = restricciones;
+    }
+
     private void FixedUpdate()
     {
-        _rb.MovePosition(_rb.position + _direction * (_speed * Time.fixedDeltaTime));
+        // _rb.MovePosition(_rb.position + _direction * (_speed * Time.fixedDeltaTime));
+        Vector2 nuevaPos = _rb.position + _direction * (_speed * Time.fixedDeltaTime);
+
+        if (_restriccionesCamara.EstaDentroDeCamara(nuevaPos))
+        {
+            _rb.MovePosition(nuevaPos);
+        }
     }
 
     //Salud/Hambre
@@ -112,6 +135,21 @@ public class Piojo : MonoBehaviour
         if(_ninfaLevel < 3)
         {
             _ninfaLevel++;
+        }
+    }
+    private void GenerarSonidoDeCaminar(bool wasWalking)
+    {
+        if (_estaCaminando && !wasWalking)
+        {
+            _audioSource.clip = _caminarClip;
+            _audioSource.Play();
+            _audioSource.loop = true;
+        }
+        else if (!_estaCaminando && wasWalking)
+        {
+            _audioSource.clip = null;
+            _audioSource.Stop();
+            _audioSource.loop = false;
         }
     }
     private void Die()
