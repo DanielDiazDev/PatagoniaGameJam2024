@@ -647,8 +647,8 @@ AudioSource:
   m_GameObject: {fileID: 617801115}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 24b4dbe462fac8141b05e90eacaf4fd2, type: 3}
+  OutputAudioMixerGroup: {fileID: 7193106304866278599, guid: f44a7e8550365b944b0c88e7ae68afa2, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 7d4607e35b827dc48a3bf022921a50ad, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.25
   m_Pitch: 1
@@ -1428,8 +1428,8 @@ AudioSource:
   m_GameObject: {fileID: 1166337083}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 7fcd0c087c73ed441aa83fb67f62f001, type: 3}
+  OutputAudioMixerGroup: {fileID: 7193106304866278599, guid: f44a7e8550365b944b0c88e7ae68afa2, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 7d4607e35b827dc48a3bf022921a50ad, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.25
   m_Pitch: 1
@@ -1729,7 +1729,7 @@ AudioSource:
   m_GameObject: {fileID: 1195365301}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -7497149743863118344, guid: f44a7e8550365b944b0c88e7ae68afa2, type: 2}
   m_audioClip: {fileID: 8300000, guid: 23e177eac18819742b28aa86054ad872, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -2065,8 +2065,8 @@ AudioSource:
   m_GameObject: {fileID: 1471162637}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ae6cec3c74fea784d85fb36510cf434a, type: 3}
+  OutputAudioMixerGroup: {fileID: 7193106304866278599, guid: f44a7e8550365b944b0c88e7ae68afa2, type: 2}
+  m_audioClip: {fileID: 8300000, guid: eeccec4e49e340c4aa3522529554f811, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.25
   m_Pitch: 1
@@ -2237,8 +2237,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2372,8 +2372,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3452,8 +3452,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3674,8 +3674,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
