@@ -31,6 +31,8 @@ public class Piojo : MonoBehaviour
     [SerializeField] private AudioClip _caminarClip;
     private RestriccionesCamara _restriccionesCamara;
 
+    public LevelLoaderScript levelLoaderScript;
+
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -155,5 +157,6 @@ public class Piojo : MonoBehaviour
     private void Die()
     {
         Debug.Log("Esta muerto");
+        levelLoaderScript.LoadIndexScene(2);
     }
 }
