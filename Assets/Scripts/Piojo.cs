@@ -137,6 +137,9 @@ public class Piojo : MonoBehaviour
         if(_ninfaLevel < 3)
         {
             _ninfaLevel++;
+        }else
+        {
+            Win();
         }
     }
     private void GenerarSonidoDeCaminar(bool wasWalking)
@@ -158,5 +161,11 @@ public class Piojo : MonoBehaviour
     {
         Debug.Log("Esta muerto");
         levelLoaderScript.LoadIndexScene(2);
+    }
+
+    private void Win()
+    {
+        Debug.Log("Ganastes!");
+        levelLoaderScript.LoadIndexScene(3);
     }
 }
