@@ -633,6 +633,8 @@ MonoBehaviour:
   _addHealth: 1
   _audioSource: {fileID: 484332357}
   _clipChupar: {fileID: 8300000, guid: 954fa38b3c5a5ba4e8bc19c0d5474ca6, type: 3}
+  minTime: 5
+  maxTime: 10
 --- !u!82 &484332357
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2379,6 +2381,7 @@ GameObject:
   - component: {fileID: 1746822365}
   - component: {fileID: 1746822364}
   - component: {fileID: 1746822366}
+  - component: {fileID: 1746822367}
   m_Layer: 0
   m_Name: Piojo
   m_TagString: Piojo
@@ -2569,6 +2572,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1746822367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746822361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29aeb9b14dba23b48b88fcf2198d6cc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1760471074
 GameObject:
   m_ObjectHideFlags: 0

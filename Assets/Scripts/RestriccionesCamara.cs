@@ -15,16 +15,17 @@ public class RestriccionesCamara : MonoBehaviour
             _collider = gameObject.AddComponent<BoxCollider2D>();
             _collider.isTrigger = true;
         }
-    }
-
-    private void Update()
-    {
         if (_camera != null)
         {
             // Actualizar el tamaño del collider según el tamaño de la cámara
             Vector2 cameraSize = new Vector2(_camera.orthographicSize * _camera.aspect * 2, _camera.orthographicSize * 2);
             _collider.size = cameraSize;
         }
+    }
+
+    private void Update()
+    {
+        
     }
 
     public bool EstaDentroDeCamara(Vector2 position)

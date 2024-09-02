@@ -47,11 +47,11 @@ public class GameManager : MonoBehaviour
         StartCoroutine(LevelUpIncrement());
         StartCoroutine(RoutineOfFoca());
 
-        if(_zonas.Count > 0)
-        {
-            _currentCamera = _zonas[0].camara;
-            ActivarCamara(_currentCamera);
-        }
+        // if(_zonas.Count > 0)
+        // {
+        //     _currentCamera = _zonas[0].camara;
+        //     ActivarCamara(_currentCamera);
+        // }
     }
     public void CambiarZona(string zonaId)
     {
@@ -77,7 +77,8 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             yield return new WaitForSeconds(_timeForLevelUp);
-            _piojo.LevelUp();
+            Piojo pipiojo = GameObject.FindObjectOfType<Piojo>();
+            pipiojo.LevelUp();
         }
     }
     private IEnumerator RoutineOfFoca()
@@ -87,17 +88,17 @@ public class GameManager : MonoBehaviour
             switch (_currentState)
             {
                 case StatesFoca.FueraDelMar:
-                    Debug.Log("La foca está fuera del mar.");
+                    Debug.Log("La foca estï¿½ fuera del mar.");
                     // Espera 15 segundos antes de la advertencia
                     yield return new WaitForSeconds(_timeForChangeOfState - 15f);
                     AdvertirCambioDeEstado(StatesFoca.MarNoProfundo);
-                    // Esperar los últimos 15 segundos
+                    // Esperar los ï¿½ltimos 15 segundos
                     yield return new WaitForSeconds(15f);
                     _currentState = StatesFoca.MarNoProfundo;
                     break;
 
                 case StatesFoca.MarNoProfundo:
-                    Debug.Log("La foca está en el mar no profundo.");
+                    Debug.Log("La foca estï¿½ en el mar no profundo.");
                     yield return new WaitForSeconds(_timeForChangeOfState - 15f);
                     AdvertirCambioDeEstado(StatesFoca.MarProfundo);
                     yield return new WaitForSeconds(15f);
@@ -105,7 +106,7 @@ public class GameManager : MonoBehaviour
                     break;
 
                 case StatesFoca.MarProfundo:
-                    Debug.Log("La foca está en el mar profundo.");
+                    Debug.Log("La foca estï¿½ en el mar profundo.");
                     yield return new WaitForSeconds(_timeForChangeOfState - 15f);
                     AdvertirCambioDeEstado(StatesFoca.FueraDelMar);
                     yield return new WaitForSeconds(15f);
@@ -124,7 +125,7 @@ public class GameManager : MonoBehaviour
     }
     private void AdvertirCambioDeEstado(StatesFoca nuevoEstado)
     {
-        Debug.Log($"Advertencia: La foca cambiará a {nuevoEstado} en 15 segundos.");
+        Debug.Log($"Advertencia: La foca cambiarï¿½ a {nuevoEstado} en 15 segundos.");
     }
 
     public bool EsEsteState(StatesFoca statesFoca)

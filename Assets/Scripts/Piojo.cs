@@ -30,24 +30,26 @@ public class Piojo : MonoBehaviour
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _caminarClip;
     private RestriccionesCamara _restriccionesCamara;
+    private bool isDead = false;
 
-    public LevelLoaderScript levelLoaderScript;
+    [SerializeField] private LevelLoaderScript levelLoaderScript;
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _restriccionesCamara = GameManager.Instance().GetCurrentCameraRestrictions();
+        //_restriccionesCamara = GameManager.Instance().GetCurrentCameraRestrictions();
+        Debug.Log(_restriccionesCamara);
     }
 
    
 
     private void Update()
     {
-        if (!_estaAgarrado && (GameManager.Instance().EsEsteState(GameManager.StatesFoca.MarNoProfundo)
-            || GameManager.Instance().EsEsteState(GameManager.StatesFoca.MarProfundo)))
-        {
-            Die();
-        }
+        //if (!_estaAgarrado && (GameManager.Instance().EsEsteState(GameManager.StatesFoca.MarNoProfundo)
+        //    || GameManager.Instance().EsEsteState(GameManager.StatesFoca.MarProfundo)))
+        // {
+        //     Die();
+        // }
         if (!_estaEnZonaCaliente)
         {
             QuitarTemperatura(_decreaseTemperaturaPorSegundo * Time.deltaTime);
@@ -72,10 +74,10 @@ public class Piojo : MonoBehaviour
         // _rb.MovePosition(_rb.position + _direction * (_speed * Time.fixedDeltaTime));
         Vector2 nuevaPos = _rb.position + _direction * (_speed * Time.fixedDeltaTime);
 
-        if (_restriccionesCamara.EstaDentroDeCamara(nuevaPos))
-        {
+        //if (_restriccionesCamara.EstaDentroDeCamara(nuevaPos))
+        //{
             _rb.MovePosition(nuevaPos);
-        }
+        //}
     }
 
     //Salud/Hambre
@@ -159,13 +161,22 @@ public class Piojo : MonoBehaviour
     }
     private void Die()
     {
-        Debug.Log("Esta muerto");
-        levelLoaderScript.LoadIndexScene(2);
+        if (!isDead)
+        {
+            isDead = true;
+        
+            Debug.Log("Esta muerto");
+            levelLoaderScript = GameObject.FindObjectOfType<LevelLoaderScript>();
+            levelLoaderScript.LoadIndexScene(2);
+            Destroy(gameObject);
+        }
     }
 
     private void Win()
     {
         Debug.Log("Ganastes!");
+        levelLoaderScript = GameObject.FindObjectOfType<LevelLoaderScript>();
         levelLoaderScript.LoadIndexScene(3);
+        Destroy(gameObject);
     }
 }

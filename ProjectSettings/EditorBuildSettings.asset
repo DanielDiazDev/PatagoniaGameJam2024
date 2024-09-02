@@ -10,11 +10,23 @@ EditorBuildSettings:
     guid: d38cdaeb33193fe44aee4cbac9ae4064
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    guid: ab3e5071afcef03459bb410cd1da03d3
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 4269d8737887727499054a9ef6efa5e0
   - enabled: 1
     path: Assets/Scenes/WinScreen.unity
     guid: fb50e39cdf63abb4c9ad200186bf3227
+  - enabled: 1
+    path: Assets/Scenes/AletaDeFoca.unity
+    guid: f489c9e2e43ec3944a21741e4fbd8d9c
+  - enabled: 1
+    path: Assets/Scenes/LomoDeFoca.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/CabezaDeFoca.unity
+    guid: ca840561efef8284eb252c77917e40ad
+  - enabled: 1
+    path: Assets/Scenes/LoadScene.unity
+    guid: e2faefb1e8748244f9aabc305c8fcf61
   m_configObjects: {}
